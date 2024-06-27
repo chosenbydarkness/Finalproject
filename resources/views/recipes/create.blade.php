@@ -5,7 +5,7 @@
 @section('content')
     <div class="content">
         <h2>Add Recipe</h2>
-        <form action="{{ route('recipes.store') }}" method="POST" class="recipe-form">
+        <form action="{{ route('recipes.store') }}" method="POST" class="recipe-form" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="author">Author:</label>
@@ -18,6 +18,10 @@
             <div>
                 <label for="instructions">Instructions:</label>
                 <textarea id="instructions" name="instructions" required></textarea>
+            </div>
+            <div>
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
             <div id="ingredients">
                 <label>Ingredients:</label>

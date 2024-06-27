@@ -196,7 +196,13 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
-
+.recipe-image {
+    max-width: 40px; /* Ensures the image does not exceed the width of its container */
+    height: auto; /* Maintains the aspect ratio */
+    max-height: 40px; /* Sets a maximum height */
+    display: block;
+    margin: 0 auto; /* Centers the image horizontally */
+}
 
 
 

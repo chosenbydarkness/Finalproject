@@ -24,6 +24,7 @@ class RecipeController extends Controller
             'author' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'instructions' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image
             'ingredients.*.name' => 'required|string|max:255',
             'ingredients.*.quantity' => 'required|string|max:255',
         ]);
@@ -33,6 +34,12 @@ class RecipeController extends Controller
         $recipe->title = $request->title;
         $recipe->instructions = $request->instructions;
         $recipe->user_id = auth()->id();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('recipe_images', 'public');
+            $recipe->image = $imagePath;
+        }
+
         $recipe->save();
 
         foreach ($request->ingredients as $ingredient) {
@@ -60,10 +67,17 @@ class RecipeController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'instructions' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $recipe->title = $request->title;
         $recipe->instructions = $request->instructions;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('recipe_images', 'public');
+            $recipe->image = $imagePath;
+        }
+
         $recipe->save();
 
         return redirect()->route('recipes.index');
@@ -74,7 +88,6 @@ class RecipeController extends Controller
         $recipe->delete();
         return redirect()->route('recipes.index');
     }
-    
 }
 
 

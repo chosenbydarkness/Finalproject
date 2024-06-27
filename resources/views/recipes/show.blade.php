@@ -6,6 +6,10 @@
     <div class="content">
         <h2>{{ $recipe->title }}</h2>
         <p>By {{ $recipe->user->name }}</p>
+        @if ($recipe->image)
+            <img src="{{ asset('storage/' . $recipe->image) }}" alt="{{ $recipe->title }}" class="recipe-image">
+        @endif
+
         <p>{{ $recipe->instructions }}</p>
 
         <h3>Ingredients</h3>
