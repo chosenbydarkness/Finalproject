@@ -15,7 +15,7 @@ class RecipeController extends Controller
 
     public function create()
     {
-        return view('recipes.create',compact('recipes'));
+        return view('recipes.create');
     }
 
     public function store(Request $request)
