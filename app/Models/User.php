@@ -30,9 +30,9 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function Preferences()
+    public function preferences()
     {
-        return $this->hasMany(Preference::class);
+        return $this->belongsToMany(Preference::class, 'preference_user', 'user_id', 'preference_id');
     }
 
     public function recipes()
@@ -40,3 +40,5 @@ class User extends Authenticatable
         return $this->hasMany(Recipe::class);
     }
 }
+
+

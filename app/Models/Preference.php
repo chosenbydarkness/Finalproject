@@ -9,15 +9,15 @@ class Preference extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'preference',
-    ];
+    protected $fillable = ['preference'];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'preference_user', 'preference_id', 'user_id');
     }
 }
+
+
+
 
 

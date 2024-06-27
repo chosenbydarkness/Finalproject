@@ -10,9 +10,10 @@ class Recipe extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'author',
         'title',
         'instructions',
-        'author',
     ];
 
     public function user()
@@ -30,4 +31,5 @@ class Recipe extends Model
         return $this->hasMany(Comment::class);
     }
 }
+
 
