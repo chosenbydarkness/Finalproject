@@ -16,6 +16,7 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipe
 // Authentication routes provided by Breeze
 require __DIR__.'/auth.php';
 
+
 // Routes accessible to authenticated users
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -30,7 +31,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/update', [UserController::class, 'update'])->name('profile.update');
     Route::put('/profile/preferences', [UserController::class, 'updatePreferences'])->name('profile.preferences.update');
 });
-
 
 
 
